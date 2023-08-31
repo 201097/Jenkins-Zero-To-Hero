@@ -9,7 +9,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git'
+        //git branch: 'main', url: 'https://github.com/201097/Jenkins-Zero-To-Hero.git'
       }
     }
     stage('Build and Test') {
@@ -21,9 +21,7 @@ pipeline {
     }
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://localhost:9000"
-        //sonarqube = "f3184bda429c1850489d1a64da50f7488c873678"
-        SONAR_AUTH_TOKEN = "f3184bda429c1850489d1a64da50f7488c873678"
+        SONAR_URL = "http://54.208.187.125:9000"
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
@@ -49,7 +47,7 @@ pipeline {
     }
     stage('Update Deployment File') {
         environment {
-            GIT_REPO_NAME = "Jenkins-Zero-To-Hero-CI-CD"
+            GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
             GIT_USER_NAME = "201097"
         }
         steps {
